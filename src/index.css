@@ -3,13 +3,43 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Sans Serif Regular";  
-  src: local("Inter-Regular"),
-    url("./fonts/Inter-Regular.ttf") format("truetype");
+	font-family: 'Inter Regular';
+	src: local('Inter-Regular'), url('./fonts/Inter-Regular.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Sans Serif Bold";  
-  src: local("Inter-Bold"),
-    url("./fonts/Inter-Bold.ttf") format("truetype");
+	font-family: 'Inter Bold';
+	src: local('Inter-Bold'), url('./fonts/Inter-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Iconsolata Regular';
+	src: local('Iconsolata-Regular'), url('./fonts/Iconsolata-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Iconsolata Bold';
+	src: local('Iconsolata-Bold'), url('./fonts/Iconsolata-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lora Regular';
+	src: local('Lora-Regular'), url('./fonts/Lora-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lora Bold';
+	src: local('Lora-Bold'), url('./fonts/Lora-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lora BoldItalic';
+	src: local('Lora-Bold-Italic'), url('./fonts/Lora-BoldItalic.ttf') format('truetype');
+}
+
+
+
+.custom_container {
+	max-width: 737px;
+	width: 100%;
 }
