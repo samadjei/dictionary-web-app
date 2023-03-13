@@ -12,14 +12,20 @@ function App() {
 	const inputRef = useRef(null);
 	const [updated, setUpdated] = useState('keyboard');
 
-	const inputValueClick = () => {
+	const handleSearchClick = (e) => {
 		setUpdated(inputRef.current.value);
 	};
 
+	const handleKeydown = (e: KeyboardEvent) => {
+		if (e.key === 'Enter') {
+			setUpdated(inputRef.current.value);
+		}
+	};
+
 	return (
-		<div className="container w-main-width mx-auto mt-14">
+		<div className="custom_container mx-auto mt-14 mb-32">
 			<Header />
-			<Input ref={inputRef} inputValueClick={inputValueClick} />
+			<Input ref={inputRef} handleKeydown={handleKeydown} handleSearchClick={handleSearchClick} />
 			<UseAxios updated={updated} />
 		</div>
 	);

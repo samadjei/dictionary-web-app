@@ -1,11 +1,11 @@
 import SearchIcon from '../assets/images/icon-search.svg';
 import { forwardRef } from 'react';
 
-const Input = forwardRef(({ inputValueClick }, ref) => {
+const Input = forwardRef(({ handleSearchClick, handleKeydown }, ref) => {
 	return (
 		<div className="relative">
-			<input ref={ref} className="bg-color-7 w-full mt-14 h-16 rounded-2xl py-6 px-6 hover:outline-dashed focus:outline-dashed outline-color-9" type="text" placeholder='Search of any word...' />
-			<div onClick={inputValueClick} className="absolute right-6 bottom-5">
+			<input ref={ref} onKeyDown={handleKeydown} className="bg-color-7 w-full mt-14 h-16 rounded-2xl py-6 px-6 hover:outline-dashed focus:outline-dashed outline-color-9" type="text" placeholder="Search of any word..." />
+			<div onClick={handleSearchClick} className="absolute right-6 bottom-5">
 				<img className="cursor-pointer" src={SearchIcon} alt="Search Icon" />
 			</div>
 		</div>
