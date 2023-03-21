@@ -4,12 +4,11 @@ import ArrowDown from '../assets/images/icon-arrow-down.svg';
 import Moon from '../assets/images/icon-moon.svg';
 import Modal from '../ui/Modal';
 
-const Header = ({font}) => {
+const Header = ({ font, handleFontClick }) => {
 	const [modal, setModal] = useState(false);
 	const toggleTheme = () => {
 		setTheme(true);
 	};
-	
 
 	const handleModalClick = () => {
 		if (modal === false) {
@@ -37,7 +36,7 @@ const Header = ({font}) => {
 					</div>
 				</div>
 			</div>
-			{modal && <Modal />}
+			{modal && <Modal font={font} handleFontClick={handleFontClick} />}
 		</div>
 	);
 };
