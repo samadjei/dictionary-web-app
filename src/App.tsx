@@ -3,19 +3,14 @@ import Input from './components/Input';
 import { useState, useRef } from 'react';
 import UseAxios from './hooks/useAxios';
 
-interface Value {}
-
 function App() {
 	const [updated, setUpdated] = useState('keyboard');
-	const [font, setFont] = useState('Sans Serif');
+	const [font, setFont] = useState('Sans-Serif');
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
-	let fontToggle = 'font-Iconsolata-Regular';
-
-	const handleFontClick = (e: React.FormEvent<HTMLFormElement>) => {
-		const target = e.target.textContent;
-		setFont(target.value);
-		console.log(target.value);
+	const handleFontClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+		const target = e.target;
+		setFont(target.innerHTML);
 	};
 
 	const handleSearchClick = () => {
@@ -33,8 +28,10 @@ function App() {
 		}
 	};
 
+
+
 	return (
-		<div className={`custom_container mx-auto mt-14 mb-32 ${fontToggle}`}>
+		<div className={`custom_container mx-auto mt-14 mb-32 font-${font}`}>
 			<Header handleFontClick={handleFontClick} font={font} />
 			<Input ref={inputRef} handleKeydown={handleKeydown} handleSearchClick={handleSearchClick} />
 			<UseAxios updated={updated} />
