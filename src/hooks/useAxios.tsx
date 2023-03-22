@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Play from '../assets/images/icon-play.svg';
 import NewWindow from '../assets/images/icon-new-window.svg';
+import { DictionaryApi, Updated } from '../interface/interface';
 
-const useAxios = ({ updated }) => {
-	const [dictionary, setDictionary] = useState({});
+const useAxios = ({ updated }: Updated) => {
+	const [dictionary, setDictionary] = useState<DictionaryApi | {}>({});
 
 	useEffect(() => {
 		axios
@@ -16,6 +17,8 @@ const useAxios = ({ updated }) => {
 				console.log(err);
 			});
 	}, [updated]);
+
+	console.log(dictionary);
 
 	return (
 		<div>
@@ -40,14 +43,12 @@ const useAxios = ({ updated }) => {
 									<hr className="h-1 mx-auto w-full bg-color-6 border-0 md:my-10 dark:bg-gray-700" />
 								</div>
 								<div className="text-xl text-color-5 mb-10">Meaning</div>
-								{/* <ul> */}
 								{meaning.definitions.map((definition) => (
 									<li className="marker:text-color-9 text-lg" key={definition.definition}>
 										{definition.definition}
 										{definition.example && <p className="text-color-5 pt-1">"{definition.example}"</p>}
 									</li>
 								))}
-								{/* </ul> */}
 							</div>
 						))}
 					</div>
