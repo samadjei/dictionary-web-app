@@ -6,7 +6,12 @@ import UseAxios from './hooks/useAxios';
 function App() {
 	const [updated, setUpdated] = useState('keyboard');
 	const [font, setFont] = useState('Sans-Serif');
+	const [darkMode, setDarkMode] = useState(true)
 	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	const toggleDarkMode = () => {
+		setDarkMode(prevDarkMode => !prevDarkMode)
+	}
 
 	const handleFontClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 		const target = e.target;
@@ -31,10 +36,12 @@ function App() {
 
 
 	return (
-		<div className={`custom_container mx-auto mt-14 mb-32 font-${font}`}>
-			<Header handleFontClick={handleFontClick} font={font} />
+		<div className={`min-h-screen font-${font}`}>
+			<div className="custom_container mx-auto mt-14 mb-32">
+			<Header toggleDarkMode={toggleDarkMode} handleFontClick={handleFontClick} font={font} />
 			<Input ref={inputRef} handleKeydown={handleKeydown} handleSearchClick={handleSearchClick} />
 			<UseAxios updated={updated} />
+			</div>
 		</div>
 	);
 }

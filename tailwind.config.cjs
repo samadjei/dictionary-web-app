@@ -17,6 +17,7 @@ module.exports = {
 			'color-9': '#A445ED',
 			'color-10': '#FF5252',
 			'color-11': '#F2F2F2',
+			'color-12': '#979797',
 		},
 		fontFamily: {
 			'Sans-Serif': ['Inter-Regular', 'sans-serif'],

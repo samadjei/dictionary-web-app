@@ -1,18 +1,24 @@
-interface Meanings {
+interface Meaning {
   partOfSpeech?: string;
-  definitions?: {
+  definitions: {
     definition?: string;
     example?: string;
   }[]
   synonyms?: string[];
 }
 
+interface Phonetics {
+  audio?: string;
+}
+
 export interface DictionaryApi {
-    word?: string;
-    phonetic?: string;
-    meanings?: Meanings;
-    sourceUrls?: string;
-    updated?: string;
+  word?: string;
+  phonetic?: string;
+  phonetics: Phonetics[];
+  meanings?: Meaning[];
+  sourceUrls?: string;
+  updated?: string;
+  meaning: string;
 }
 
 
@@ -25,6 +31,7 @@ export interface HeaderProps {
   handleFontClick: ()=> void;
   toggleTheme: ()=> void;
   handleModalClick: () => void
+  toggleDarkMode: () => void;
 }
 
 export interface Theme {
