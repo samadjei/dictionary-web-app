@@ -1,3 +1,4 @@
+import ThemToggle from '../components/ThemToggle';
 interface Meaning {
   partOfSpeech?: string;
   definitions: {
@@ -28,16 +29,20 @@ export interface Updated {
 
 export interface HeaderProps {
   font: string;
-  handleFontClick: ()=> void;
-  toggleTheme: ()=> void;
-  handleModalClick: () => void
-  toggleDarkMode: () => void;
+  handleFontToggle: React.MouseEventHandler<HTMLInputElement>;
+  handleThemeSwitch: () => void;
 }
 
 export interface Theme {
   modal: boolean;
 } 
 
-export interface ModalProps {
-  handleFontClick: ()=> void;
-} 
+export interface InputProps {
+  isValid: boolean;
+	handleSearchClick: () => void;
+	handleKeydown: React.KeyboardEventHandler<HTMLInputElement>;
+}
+
+export interface ThemeToggleProps {
+  handleThemeSwitch: React.MouseEventHandler<HTMLInputElement>;
+}

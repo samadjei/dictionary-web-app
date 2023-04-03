@@ -1,45 +1,63 @@
 import Header from './components/Header';
 import Input from './components/Input';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import UseAxios from './hooks/useAxios';
 
 function App() {
 	const [updated, setUpdated] = useState('keyboard');
 	const [font, setFont] = useState('Sans-Serif');
-	const [darkMode, setDarkMode] = useState(true)
-	const inputRef = useRef<HTMLInputElement | null>(null);
+	const [theme, setTheme] = useState('light');
+	const [isValid, setIsValid] = useState(true);
+	const inputRef = useRef<HTMLInputElement>(null);
 
-	const toggleDarkMode = () => {
-		setDarkMode(prevDarkMode => !prevDarkMode)
+	useEffect(() => {
+		if (theme === 'dark') {
+			document.documentElement.classList.add('dark');
+		} else {
+			document.documentElement.classList.remove('dark');
+		}
+	}, [theme])
+	
+
+	const handleThemeSwitch = () => {
+		setTheme(theme === 'dark' ? 'light' : 'dark');
 	}
 
-	const handleFontClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-		const target = e.target;
+	const handleFontToggle: React.MouseEventHandler<HTMLInputElement> = (e) => {
+		const target = e.target as HTMLElement;
 		setFont(target.innerHTML);
 	};
 
-	const handleSearchClick = () => {
-		// using type guard to make sure the current property on the ref does not store a `null` value
-		if (inputRef.current != null) {
+	const handleSearchClick = () => {		
+		if (inputRef && inputRef.current) {
 			setUpdated(inputRef.current.value);
+		}
+		if (inputRef?.current?.value === '') {
+			setIsValid(false);
+		} else if (inputRef.current != null && inputRef.current?.value !== '') {
+			setUpdated(inputRef.current.value);
+			setIsValid(true);
 		}
 	};
 
-	const handleKeydown = (e) => {
+	const handleKeydown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
 		if (e.key === 'Enter') {
-			if (inputRef.current != null) {
+			if (inputRef && inputRef.current) {
 				setUpdated(inputRef.current.value);
 			}
 		}
+		if (e.key === 'Enter' && inputRef.current?.value === '') {
+			setIsValid(false);
+		} else if (e.key === 'Enter' && inputRef.current?.value !== '') {
+			setIsValid(true)
+		}
 	};
 
-
-
 	return (
-		<div className={`min-h-screen font-${font}`}>
-			<div className="custom_container mx-auto mt-14 mb-32">
-			<Header toggleDarkMode={toggleDarkMode} handleFontClick={handleFontClick} font={font} />
-			<Input ref={inputRef} handleKeydown={handleKeydown} handleSearchClick={handleSearchClick} />
+		<div className={`min-h-screen dark:bg-color-1 font-${font}`}>
+			<div className="custom_container px-10 mx-auto pt-14 pb-32">
+			<Header handleThemeSwitch={handleThemeSwitch} handleFontToggle={handleFontToggle} font={font} />
+			<Input isValid={isValid} ref={inputRef} handleKeydown={handleKeydown} handleSearchClick={handleSearchClick} />
 			<UseAxios updated={updated} />
 			</div>
 		</div>
